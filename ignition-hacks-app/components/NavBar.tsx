@@ -10,7 +10,7 @@ const Navbar = () => {
         {/*<div className="mx-auto justify-between items-center py-3 hidden md:flex">*/}
             <h1 className="text-3xl ">
                 <Link href="/">
-                    <b>VT</b>
+                    <b>VTutor AI</b>
                 </Link>
             </h1>
             <ul className="flex space-x-4">
