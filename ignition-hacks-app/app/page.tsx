@@ -1,8 +1,16 @@
-import { SideBar, Footer } from '../components/Components';
+import { SideBar, Footer, Home, NavBar } from '../components/Components';
 
 export default function Page() {
   return (
 
+    <div>
+      <Home />
+      <Footer />
+    </div>
+
+
+
+/** 
     <div className="grid grid-rows-10">
 
       <div className="row-span-8 flex space-x-6">
@@ -46,6 +54,8 @@ export default function Page() {
 
       <Footer />
     </div>
+
+    */
 
     
 
