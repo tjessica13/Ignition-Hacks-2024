@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-import { SideBar } from '../components/Components';
+import { SideBar, Footer } from '../components/Components';
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
