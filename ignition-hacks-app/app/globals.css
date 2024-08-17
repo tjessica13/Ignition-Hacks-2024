@@ -60,11 +60,12 @@ main  {
 #chat {
   background-color: rgba(217, 217, 217, 0.5);
   min-height: 500px;
+  max-height: 500px;
   height: 100%;
   width: 100%; 
   padding: 10px;
   margin: 50px;
-
+  overflow-y: auto;
   position: relative;
   z-index: 2;
 }
@@ -91,23 +92,21 @@ main  {
 
 #chat-box form {
   display: flex;
-  width: 100%; /* Ensure form takes full width of chat-box */
-  gap: 10px; /* Space between input and submit button */
+  width: 100%; 
+  gap: 10px;
 }
 
 #chat-box input[type="text"] {
-  min-width: 0; /* Allow input to shrink */
-  width: 25%; /* Set width to 25% of the form */
-  padding: 8px; /* Padding for input field */
-  border: 1px solid #ccc; /* Border for input field */
-  border-radius: 4px; /* Rounded corners */
+  min-width: 0; 
+  width: 25%; 
+  padding: 8px; 
+  border: 1px solid rgba(217, 217, 217, 1); 
+  border-radius: 4px;
 }
 
 #chat-box input[type="submit"] {
-  padding: 8px 16px; /* Padding for button */
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  border: none; /* Remove border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
+  padding: 8px 16px;
+  background-color: #000;
+  color: #ffffff;
+  border-radius: 4px;
 }
