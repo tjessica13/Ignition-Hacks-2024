@@ -10,7 +10,7 @@ const Footer = () => {
                 <h2>Your Personal Tutor to Learn Artifical Intelligence and Machine Learning.</h2>
                 <div className="socials flex justify-start gap-5 items-center h-10 pt-5">
                     <FaLinkedin size={30} />
-                    <FaGithub size={30} />
+                    <a href="https://github.com/tjessica13/Ignition-Hacks-2024"><FaGithub size={30} /></a>
                     <FaSquareXTwitter size={30} />
                 </div>
             </div>
