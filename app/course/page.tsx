@@ -94,6 +94,7 @@ export default function Page() {
           <input type="submit" value="Send" className="mx-2 py-1 px-4 bg-black text-white" />
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
