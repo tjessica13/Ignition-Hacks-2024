@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: None) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: '#FFFFFF';
+}
+
+#chatbot-sidebar  {
+  min-height: 100%;
+  margin-bottom: 0;
+}
+
+#chatbot-sidebar #sidebar-lesson  {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+main  {
+  background-image: url("/img/chat-background.jpeg");
+  min-height: fit-content;
+  background-size: 100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+#tuber-bot  {
+  position: absolute;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  align-items: right;
+  justify-content: right;
+}
+
+#chat {
+  background-color: rgba(217, 217, 217, 0.5);
+  min-height: 500px;
+  max-height: 500px;
+  height: 100%;
+  width: 100%; 
+  padding: 10px;
+  margin: 50px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 2;
+}
+
+#chat #bot-message  {
+  background-color: #DAFFD2;
+  padding: 10px;
+  margin: 10px;
+}
+
+#chat #user-message  {
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+#chat-box {
+  background-color: #BDFFAF;
+  min-height: 100%;
+  height: 100%;
+  width: 100%; 
+}
+
+#chat-box form {
+  display: flex;
+  width: 100%; 
+  gap: 10px;
+}
+
+#chat-box input[type="text"] {
+  min-width: 0; 
+  width: 25%; 
+  padding: 8px; 
+  border: 1px solid rgba(217, 217, 217, 1); 
+  border-radius: 4px;
+}
+
+#chat-box input[type="submit"] {
+  padding: 8px 16px;
+  background-color: #000;
+  color: #ffffff;
+  border-radius: 4px;
+}
