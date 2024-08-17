@@ -1,4 +1,4 @@
-import {SideBar} from '../components/Components';
+import { SideBar, Footer } from '../components/Components';
 
 export default function Page() {
   return (
@@ -44,6 +44,7 @@ export default function Page() {
           </form>
       </div>
 
+      <Footer />
     </div>
 
     
