@@ -2,14 +2,13 @@ import { SideBar, Footer, Home, NavBar } from '../../components/Components';
 
 export default function Course() {
     return (
-        <div className="grid grid-rows-10">
+      <div className="grid grid-rows-10">
 
       <div className="row-span-8 flex space-x-6">
 
         <div className="w-1/6">
             <SideBar />
         </div>
-
 
         <div className="w-5/6">
             <div className="flex space-x-4">
