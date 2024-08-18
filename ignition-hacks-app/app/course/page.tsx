@@ -53,13 +53,30 @@ export default function Page() {
   // Write the initial message for the welcome to the lesson
   useEffect(() => {
     const fetchWelcomeMessage = async () => {
-      const welcome_message = await sendMessage("Write a welcome message to the user welcoming them to the AI course");
+      const welcome_message = await sendMessage("Write a welcome message to the user welcoming them to the AI course in less than 250 characters");
       setChatHistory([{ text: welcome_message, type: 'bot' }]);
     };
 
     fetchWelcomeMessage();
   }, []);
   
+
+// Set up lesson delivery (We only have 1 lesson for now)
+
+// Retrieve lesson plan from lessons
+
+// Send plan to model to generate explanations
+
+  // Retrieve model response
+
+// Split up response into 500 character limit messages
+
+  // Send to chat history
+
+  // Ask if everything is ok and if there are any questions
+
+  // Move to next topic
+
 
   return (
     <div className="grid grid-rows-10">
