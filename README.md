@@ -1,3 +1,13 @@
+
+## VTutor AI
+
+Your Personal Virtual Tutor for Learning Artificial Intelligence and Machine Learning.
+
+Submitted to Ignition Hacks Online Hackathon on August 18, 2024.
+
+Disclaimer: For the purposes of creating this prototype, we used AI generated images for the background image and character image. We do not take credit for the image and acknowledge that artists should be credited for their art. We are only using AI generated art as a placeholder and for prototyping purposes. 
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
