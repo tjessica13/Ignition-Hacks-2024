@@ -49,6 +49,8 @@ export default function Page() {
 
   const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);  // Store welcome message
 
+  const [fetchLessonFlag, setFetchLessonFlag] = useState<boolean | null>(false);  // Ensure fetch lesson only happens once
+
   const chatEndRef = useRef<HTMLDivElement>(null);  // Get positioning for end of chat history
 
 
@@ -81,12 +83,59 @@ export default function Page() {
 
     // Set up lesson delivery (We only have 1 lesson for now)
     const fetchLesson = async () => {
-
-      const full_prompt = "Can you write a full explanation paper for each of these topics for the session. Write them without markdown formatting. Also give them the suggested activities to do to practice and explore. Then ask if the user is following along and if they have any questions: " + await getLessonPrompt("/lessons/lesson-1.txt");
-
-      const lesson_content = await sendMessage(full_prompt);
-      setChatHistory([...messages, { text: lesson_content, type: 'bot' }]);
       
+    
+      /* let lesson = ["Definition of AI", "History of AI", "AI vs. Machine Learning vs. Deep Learning", "Applications of AI"]
+      let full_prompt:string;
+      let lesson_content:string;
+
+      for(let topic of lesson)  {
+        
+        full_prompt = "Can you write a full explanation for each of these topics for the session. Write them without markdown formatting or bolding.: " + topic;
+
+        setChatHistory(messages => [...messages, { text: topic, type: 'user' }]);
+
+        lesson_content = await sendMessage(full_prompt);
+
+        setChatHistory(messages => [...messages, { text: lesson_content, type: 'bot' }]);
+      
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
+      }  
+      */
+
+        let full_prompt:string;
+        let lesson_content:string;
+        let topic:string;
+
+
+        topic = "Definition of AI"
+        full_prompt = "Can you write a full explanation for each of these topics for the session. Write them without markdown formatting or bolding.: " + topic;
+        setChatHistory(messages => [...messages, { text: topic, type: 'user' }]);
+        lesson_content = await sendMessage(full_prompt);
+        setChatHistory(messages => [...messages, { text: lesson_content, type: 'bot' }]);
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+
+        topic = "History of AI"
+        full_prompt = "Can you write a full explanation for each of these topics for the session. Write them without markdown formatting or bolding.: " + topic;
+        setChatHistory(messages => [...messages, { text: topic, type: 'user' }]);
+        lesson_content = await sendMessage(full_prompt);
+        setChatHistory(messages => [...messages, { text: lesson_content, type: 'bot' }]);
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+
+        topic = "AI vs. Machine Learning vs. Deep Learning"
+        full_prompt = "Can you write a full explanation for each of these topics for the session. Write them without markdown formatting or bolding.: " + topic;
+        setChatHistory(messages => [...messages, { text: topic, type: 'user' }]);
+        lesson_content = await sendMessage(full_prompt);
+        setChatHistory(messages => [...messages, { text: lesson_content, type: 'bot' }]);
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+
+        topic = "Applications of AI"
+        full_prompt = "Can you write a full explanation for each of these topics for the session. Write them without markdown formatting or bolding.: " + topic;
+        setChatHistory(messages => [...messages, { text: topic, type: 'user' }]);
+        lesson_content = await sendMessage(full_prompt);
+        setChatHistory(messages => [...messages, { text: lesson_content, type: 'bot' }]);
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+
     };
 
 
@@ -99,7 +148,11 @@ export default function Page() {
       fetchWelcomeMessage();
     }
     else  {
-      fetchLesson();
+      if(!fetchLessonFlag)  { // Check if fetch lesson already happened (Do not let it happen again)
+        fetchLesson();
+        setFetchLessonFlag(true);
+      }
+      
     }
 
   }, [welcomeMessage]);

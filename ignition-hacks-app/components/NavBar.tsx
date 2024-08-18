@@ -25,13 +25,11 @@ const Navbar = () => {
                 </Link>
                 </li>
                 <li>
+                  <Link href="#">
                     <div className="bg-black text-white rounded py-1 px-6">
-
-                        <Link href="#">
                             Profile
-                        </Link>
                     </div>
-                
+                  </Link>
                 </li>
             </ul>
         </div>
