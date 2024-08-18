@@ -21,7 +21,7 @@ async function sendMessage(prompt: string) {
   const response = await result.response;
   return response.text();
 }
-
+/* 
 // Retrieve lesson plan from lessons
 export async function getLessonPrompt(promptFile: string) {
   
@@ -39,7 +39,7 @@ export async function getLessonPrompt(promptFile: string) {
 
   }
 
-}
+} */
 
 export default function Page() {
 
