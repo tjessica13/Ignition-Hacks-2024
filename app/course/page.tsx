@@ -14,7 +14,7 @@ const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
 
 // Send chat message to Gemini model
 async function sendMessage(prompt: string) {
-  const pre_prompt = "You are a friendly anime witch girl that likes to help and are an expert in AI. Please answer this message: ";
+  const pre_prompt = "You are a friendly anime witch girl named Lumi that likes to help and are an expert in AI. Please answer this message: ";
   const complete_prompt = pre_prompt + prompt;
 
   const result = await model.generateContent(complete_prompt);
@@ -70,7 +70,9 @@ export default function Page() {
 
   // Keep the scroll to latest message added
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if(chatEndRef.current)  {
+     chatEndRef.current.scrollTop = chatEndRef.current.scrollHeight; 
+    }
   }, [messages]);
 
 
@@ -179,21 +181,18 @@ export default function Page() {
         </div>
         <div className="w-5/6">
           <div className="flex space-x-4">
-            <div id="chat" className="w-full">
+            <div id="chat" className="w-full" ref={chatEndRef}>
               <ul>
                 <li id="bot-message">
-                  <p><b>Bot</b></p>
+                  <p><b>Lumi</b></p>
                   <p>{welcomeMessage}</p>
                 </li>
                 {messages.map((msg, index) => (
                   <li key={index} id={msg.type === 'bot' ? "bot-message" : "user-message"}>
-                    <p><b>{msg.type === 'bot' ? 'Bot' : 'User'}</b></p>
+                    <p><b>{msg.type === 'bot' ? 'Lumi' : 'User'}</b></p>
                     <p>{msg.text}</p>
                   </li>
                 ))}
-                
-                {/* Force chat history to scroll to latest message */}
-                <div ref={chatEndRef} />
               </ul>
             </div>
             <div id="tutor-bot" className="w-full">
@@ -208,6 +207,7 @@ export default function Page() {
           <input type="submit" value="Send" className="mx-2 py-1 px-4 bg-black text-white" />
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
