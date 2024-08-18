@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 
 import { SideBar, Footer } from '../../components/Components';
 
+import axios from 'axios';
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY);
@@ -12,7 +14,7 @@ const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
 
 // Send chat message to Gemini model
 async function sendMessage(prompt: string) {
-  const pre_prompt = "You are a friendly anime witch girl that likes to help and can only answer messages in 500 characters or less. Please answer this question: ";
+  const pre_prompt = "You are a friendly anime witch girl that likes to help and are an expert in AI. Please answer this message: ";
   const complete_prompt = pre_prompt + prompt;
 
   const result = await model.generateContent(complete_prompt);
@@ -20,12 +22,32 @@ async function sendMessage(prompt: string) {
   return response.text();
 }
 
+// Retrieve lesson plan from lessons
+export async function getLessonPrompt(promptFile: string) {
+  
+  try {
+    const prompt = await axios.get(promptFile);
+    
+    return  prompt.data;
+
+  }
+  catch(error)  {
+
+    console.error("Cannot file file: ", error);
+
+    return "There was an error reading the lesson plan";
+
+  }
+
+}
+
 export default function Page() {
 
   // Update chat messages for session
-
   const [userMessage, setUserMessage] = useState('');
   const [messages, setChatHistory] = useState<Array<{ text: string; type: 'user' | 'bot' }>>([]);
+
+  const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);  // Store welcome message
 
   const chatEndRef = useRef<HTMLDivElement>(null);  // Get positioning for end of chat history
 
@@ -51,19 +73,37 @@ export default function Page() {
 
 
   // Write the initial message for the welcome to the lesson
-  useEffect(() => {
     const fetchWelcomeMessage = async () => {
       const welcome_message = await sendMessage("Write a welcome message to the user welcoming them to the AI course in less than 250 characters");
-      setChatHistory([{ text: welcome_message, type: 'bot' }]);
+      setWelcomeMessage(welcome_message);
+      return welcome_message;
     };
 
-    fetchWelcomeMessage();
-  }, []);
-  
+    // Set up lesson delivery (We only have 1 lesson for now)
+    const fetchLesson = async () => {
 
-// Set up lesson delivery (We only have 1 lesson for now)
+      const full_prompt = "Can you write a full explanation paper for each of these topics for the session. Write them without markdown formatting. Also give them the suggested activities to do to practice and explore. Then ask if the user is following along and if they have any questions: " + await getLessonPrompt("/lessons/lesson-1.txt");
 
-// Retrieve lesson plan from lessons
+      const lesson_content = await sendMessage(full_prompt);
+      setChatHistory([...messages, { text: lesson_content, type: 'bot' }]);
+      
+    };
+
+
+
+  // Display a welcome message before doing a lesson fetch
+  useEffect(() => {
+
+    if(welcomeMessage === null)  {
+
+      fetchWelcomeMessage();
+    }
+    else  {
+      fetchLesson();
+    }
+
+  }, [welcomeMessage]);
+
 
 // Send plan to model to generate explanations
 
@@ -88,6 +128,10 @@ export default function Page() {
           <div className="flex space-x-4">
             <div id="chat" className="w-full">
               <ul>
+                <li id="bot-message">
+                  <p><b>Bot</b></p>
+                  <p>{welcomeMessage}</p>
+                </li>
                 {messages.map((msg, index) => (
                   <li key={index} id={msg.type === 'bot' ? "bot-message" : "user-message"}>
                     <p><b>{msg.type === 'bot' ? 'Bot' : 'User'}</b></p>

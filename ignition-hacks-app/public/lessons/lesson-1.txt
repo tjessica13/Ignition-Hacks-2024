@@ -1,6 +1,5 @@
 Day 1: Introduction to AI and Machine Learning
 Session 1: What is AI?
-Duration: 1 hour
 Topics:
 Definition of AI
 History of AI
@@ -9,4 +8,3 @@ Applications of AI
 Activities:
 Discussion on how AI is integrated into everyday life
 Video: "The AI Revolution: The Road to Superintelligence" by Wait But Why
-Session 2: Basics of Machine Learning
